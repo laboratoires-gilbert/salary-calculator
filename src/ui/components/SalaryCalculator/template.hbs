@@ -1,1 +1,50 @@
-<div><h1>Welcome to Glimmer!</h1></div>
+<div>
+  <h1>Welcome to Glimmer!</h1>
+
+  <form>
+    <div>
+      <label for="role">What is your role ?</label>
+      <select id="role" onchange={{action updateRole}}>
+        <option value="" selected disabled>Select one--</option>
+        {{#each roles key="@index" as |role index|}}
+          <option value={{ index }} selected={{eq index selectedRole}}>{{role.title}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div>
+      <label for="city">Where do you live ?</label>
+      <select id="city" onchange={{action updateCity}}>
+        <option value="" selected disabled>Select one--</option>
+        {{#each cities key="@index" as |city index|}}
+          <option value={{ index }} selected={{eq index selectedCity}}>{{city.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div>
+      <label for="city">What is your level ?</label>
+      <select id="city" onchange={{action updateLevel}}>
+        <option value="" selected disabled>Select one--</option>
+        {{#each levels key="@index" as |level index|}}
+          <option value={{ index }} selected={{eq index selectedLevel}}>{{level.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div>
+      <label for="city">What is your experience ?</label>
+      <select id="city" onchange={{action updateExperience}}>
+        <option value="" selected disabled>Select one--</option>
+        {{#each experiences key="@index" as |experience index|}}
+          <option value={{ index }} selected={{eq index selectedExperience}}>{{experience.label}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </form>
+
+  <div>
+    <p>You should earn {{ format-currency yearlySalary '€' }} a year.</p>
+     This represent approximatively {{ format-currency monthlySalary '€' }} a month
+  </div>
+</div>
