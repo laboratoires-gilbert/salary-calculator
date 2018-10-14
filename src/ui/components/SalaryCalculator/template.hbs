@@ -1,5 +1,5 @@
-<div>
-  <h1>Welcome to Glimmer!</h1>
+<div class="container">
+  <h2>Salary Calculator!</h2>
 
   <form>
     <div>
@@ -43,8 +43,10 @@
     </div>
   </form>
 
-  <div>
-    <p>You should earn {{ format-currency yearlySalary '€' }} a year.</p>
-     This represent approximatively {{ format-currency monthlySalary '€' }} a month
-  </div>
+  {{#if hasCompleteForm}}
+    <div>
+      <p>You should earn {{ format-currency yearlySalary '€' }} a year.</p>
+      This represent approximatively {{ format-currency monthlySalary '€' }} a month
+    </div>
+  {{/if}}
 </div>

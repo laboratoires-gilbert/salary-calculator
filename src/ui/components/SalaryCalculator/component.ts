@@ -35,20 +35,32 @@ export default class SalaryCalculator extends Component {
   constructor(options) {
     super(options);
 
-    this.selectedRole = 0
-    this.selectedCity = 0
+    this.selectedRole = null
+    this.selectedCity = null
     this.selectedLevel = 1
     this.selectedExperience = 2
   }
 
   @tracked
+  get hasCompleteForm() {
+    return this.yearlySalary > 0;
+  }
+
+  @tracked
   get yearlySalary() {
+    const { selectedRole, selectedCity } = this;
+
+    if (selectedRole == null || selectedCity == null) {
+      return 0
+    }
+
     let referenceRentIndex = this.cities.find( city => city.name == 'Paris').rentIndex
     let baseSalary = this.roles[this.selectedRole].baseSalary
     let rentIndex = this.cities[this.selectedCity].rentIndex
     let levelFactor = this.levels[this.selectedLevel].factor
     let experienceFactor = this.experiences[this.selectedExperience].factor
 
+    // 40000 * 0,79 * 0,8 * 0,9
     return baseSalary * ( 0.7 * (rentIndex / referenceRentIndex) + 0.3) * levelFactor * experienceFactor
   }
 
@@ -76,7 +88,6 @@ export default class SalaryCalculator extends Component {
 
   updateExperience(event) {
     const { value } = event.target;
-    console.log(value);
 
     this.selectedExperience = value;
   }
