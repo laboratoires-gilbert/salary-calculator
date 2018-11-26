@@ -1,0 +1,21 @@
+---
+stages:
+  - build
+  - deploy
+
+build:
+  image: node:10.13
+  stage: build
+  script:
+    - npm install -g ember-cli
+    - npm install
+    - ember build
+  artifacts:
+    path:
+      - dist
+
+pages:
+  stage: deploy
+  artifacts:
+    path:
+      - dist
