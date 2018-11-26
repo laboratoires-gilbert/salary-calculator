@@ -4,7 +4,7 @@ pages:
   script:
     - npm install -g ember-cli
     - npm install
-    - ember build
+    - ember build --output-path=public
   artifacts:
     paths:
-      - dist
+      - public
